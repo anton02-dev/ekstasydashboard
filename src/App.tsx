@@ -39,7 +39,8 @@ function AppContent() {
     }
   };
 
-  return (
+  if(!isAuthenticated) {
+    return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
 
@@ -48,12 +49,31 @@ function AppContent() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3 }}
-        className="lg:ml-64 p-4 lg:p-8"
+        className=" p-4 lg:p-8"
       >
         {renderContent()}
       </motion.main>
     </div>
   );
+  }else{
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
+
+        <motion.main
+          key={activeSection}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="lg:ml-64 p-4 lg:p-8"
+        >
+          {renderContent()}
+        </motion.main>
+      </div>
+    );
+  }
+
+  
 }
 
 function App() {
