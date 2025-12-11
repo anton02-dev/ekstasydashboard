@@ -18,6 +18,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 export default function ProductModal({ isOpen, onClose, product }: ProductModalProps) {
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
+    stock: 0,
     sku: '',
     ean: '',
     title: '',
@@ -52,6 +53,7 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
           : [];
       
       setFormData({
+        stock: product.stock,
         sku: product.sku,
         ean: product.ean,
         title: product.title,
@@ -79,6 +81,7 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
       setExistingGalleryUrls(galleryUrls);
     } else {
       setFormData({
+        stock: 0,
         sku: '',
         ean: '',
         title: '',
@@ -337,7 +340,20 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
                     />
                   </div>
                 </div>
-
+                <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Stock
+                    </label>
+                    <input
+                      type="number"
+                      step="1"
+                      required
+                      min="0"
+                      value={formData.stock}
+                      onChange={(e) => setFormData({ ...formData, stock: parseFloat(e.target.value) })}
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    />
+                  </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
                     Category
