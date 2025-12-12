@@ -67,15 +67,13 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
         weight: product.weight || 0,
       });
       
-      // Set main image preview - handle both full URLs and filenames
       const mainImgUrl = product.mainImg.startsWith('https') 
         ? product.mainImg 
-        : `https://pcexpert.store/downloaded_images/${product.mainImg}`;
+        : `https://ekstasy.it/downloaded_images/${product.mainImg}`;
       setMainImgPreview(mainImgUrl);
       
-      // Set gallery previews - handle both full URLs and filenames
       const galleryUrls = galleryArray.map(img => 
-        img.startsWith('https') ? img : `https://pcexpert.store/downloaded_images/${img}`
+        img.startsWith('https') ? img : `https://ekstasy.it/downloaded_images/${img}`
       );
       setGalleryPreviews(galleryUrls);
       setExistingGalleryUrls(galleryUrls);
