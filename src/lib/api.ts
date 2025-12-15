@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Product, Filter, WeightPrice, Category, Order } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://ekstasy.it/api';
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -105,3 +105,10 @@ export const analyticsApi = {
   getRevenueData: () => api.get('/analytics/revenue'),
   getOrdersData: () => api.get('/analytics/orders'),
 };
+
+export const variantsApi = {
+  getVariants: (productId: number) => api.get(`/products/${productId}/variants`),
+  createVariant: (productId: number, data: any) => api.post(`/products/${productId}/variants`, {variant: data}),
+  updateVariant: (variantId: number, data: any) => api.put(`/variants/${variantId}`, {variant: data}),
+  deleteVariant: (variantId: number) => api.delete(`/variants/${variantId}`)
+}

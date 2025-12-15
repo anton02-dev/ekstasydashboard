@@ -1,5 +1,6 @@
 export interface Product {
   id: number;
+  stock: number;
   sku: string;
   ean: string;
   title: string;
