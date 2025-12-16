@@ -368,6 +368,7 @@ export default function ProductModal({ isOpen, onClose, product }) {
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
     stock: 0,
+    discount: 0,
     sku: '',
     ean: '',
     title: '',
@@ -426,6 +427,7 @@ export default function ProductModal({ isOpen, onClose, product }) {
       
       setFormData({
         stock: product.stock,
+        discount: product.discount,
         sku: product.sku,
         ean: product.ean,
         title: product.title,
@@ -452,6 +454,7 @@ export default function ProductModal({ isOpen, onClose, product }) {
     } else {
       setFormData({
         stock: 0,
+        discount: 0,
         sku: '',
         ean: '',
         title: '',
@@ -746,6 +749,20 @@ export default function ProductModal({ isOpen, onClose, product }) {
                     min="0"
                     value={formData.stock}
                     onChange={(e) => setFormData({ ...formData, stock: parseFloat(e.target.value) })}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                </div>
+              <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Discount(%)
+                  </label>
+                  <input
+                    type="number"
+                    step="1"
+                    required
+                    min="0"
+                    value={formData.discount}
+                    onChange={(e) => setFormData({ ...formData, discount: parseFloat(e.target.value) })}
                     className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   />
                 </div>

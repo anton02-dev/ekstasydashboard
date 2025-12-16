@@ -12,6 +12,7 @@ export interface Product {
   galleryImgs: string;
   categorie: number;
   weight: number;
+  discount: number;
 }
 
 export interface Filter {
